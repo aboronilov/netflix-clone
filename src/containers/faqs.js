@@ -3,6 +3,7 @@ import { Accordion } from "../components";
 import faqsData from '../fixtures/faqs.json';
 
 import React from 'react';
+import OptForm from "../components/opt-form";
 
 export const FaqsContainer = () => {
     return (
@@ -14,9 +15,13 @@ export const FaqsContainer = () => {
                     <Accordion.Body>{item.body}</Accordion.Body>
                 </Accordion.Item>
             )}
-            <Accordion.Item>
-
-            </Accordion.Item>
+            <Accordion.Item />
+            <OptForm>
+                <OptForm.Input placeholder="Email address"/>
+                <OptForm.Button>Try it now</OptForm.Button>
+                <OptForm.Break></OptForm.Break>
+                <OptForm.Text>Ready to watch? Enter your email to create or restart your membership</OptForm.Text>
+            </OptForm>
         </Accordion>
     );
 }

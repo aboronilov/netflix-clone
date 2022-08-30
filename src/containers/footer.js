@@ -2,7 +2,7 @@ import { Footer } from "../components";
 
 import React from 'react';
 
-const FooterContainer = () => {
+export const FooterContainer = () => {
     return (
         <Footer>
             <Footer.Title>Questions? Contact us</Footer.Title>
@@ -45,4 +45,3 @@ const FooterContainer = () => {
     );
 }
 
-export default FooterContainer;

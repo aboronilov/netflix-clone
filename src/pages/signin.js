@@ -1,17 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import {useNavigate} from 'react-router-dom';
 import { FooterContainer } from '../containers/footer';
 import { HeaderContainer } from '../containers/header';
 import { Form } from '../components';
 import * as ROUTES from "../constants/routes";
+import { FirebaseContext } from '../context/firebase';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../lib/firebase.prod';
 
 export default function Signin() {
-  const [emailAddress, setEmailAddress] = useState("")
-  const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
+  const navigate = useNavigate();
+  const {firebase} = useContext(FirebaseContext);
+  const [emailAddress, setEmailAddress] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const isInvalid = password === "" || emailAddress === "";
   const handleSignin = (event) => {
     event.preventDefault();
+    
+    createUserWithEmailAndPassword(auth, emailAddress, password)
+      .then(() => {
+        // push to the browse page
+        navigate(ROUTES.BROWSE)
+      })
+      .catch((error) => {
+        setEmailAddress("");
+        setPassword("");
+        setError(error.message)
+      })
   }
 
   return (

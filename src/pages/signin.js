@@ -5,7 +5,7 @@ import { HeaderContainer } from '../containers/header';
 import { Form } from '../components';
 import * as ROUTES from "../constants/routes";
 import { FirebaseContext } from '../context/firebase';
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../lib/firebase.prod';
 
 export default function Signin() {
@@ -19,9 +19,8 @@ export default function Signin() {
   const handleSignin = (event) => {
     event.preventDefault();
     
-    createUserWithEmailAndPassword(auth, emailAddress, password)
+    signInWithEmailAndPassword(auth, emailAddress, password)
       .then(() => {
-        // push to the browse page
         navigate(ROUTES.BROWSE)
       })
       .catch((error) => {

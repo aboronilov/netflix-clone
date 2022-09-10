@@ -19,22 +19,30 @@ export default function Signup() {
 
   const isInvalid = firstName === "" || password === "" || emailAddress === "";
 
-  const handleSignUp = async (event) => {
+  // const handleSignup = async (event) => {
+  //   event.preventDefault();   
+  // }
+
+  const handleSignup = (event) => {
     event.preventDefault();
-    try {
-      const {user} = await createUserWithEmailAndPassword(auth, emailAddress, password);
-      await updateProfile(user, {
-        diplayName: firstName,
-        photoURL: Math.floor(Math.random() * 5) + 1,
-      })      
-    } catch (error) {
-      setEmailAddress("");
-      setPassword("");
-      setFirstName("");
-      setError(error.message)
-    }
-    navigate(ROUTES.BROWSE);
-  }
+
+    createUserWithEmailAndPassword(auth, emailAddress, password)
+      .then(() =>
+        updateProfile(auth.currentUser, {
+          displayName: firstName,
+          photoURL: Math.floor(Math.random() * 5) + 1,
+        })
+          .then(() => {
+            navigate(ROUTES.BROWSE);
+          })
+      )
+      .catch((error) => {
+        setFirstName('');
+        setEmailAddress('');
+        setPassword('');
+        setError(error.message);
+      });
+  };
 
   return (
     <>
@@ -43,7 +51,7 @@ export default function Signup() {
           <Form.Title>Sign Up</Form.Title>
           {error && <Form.Error>{error}</Form.Error>}
 
-          <Form.Base onSubmit={handleSignUp} method="POST">
+          <Form.Base onSubmit={handleSignup} method="POST">
 
             <Form.Input
               placeholder="First name"

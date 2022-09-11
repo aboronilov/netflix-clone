@@ -9,7 +9,7 @@ export const Background = styled.div`
         top left / cover no-repeat;
 
     @media (max-width: 1100px) {
-      ${({dontShowOnSmallViewPort}) => dontShowOnSmallViewPort && 'background: none'}
+      ${({ dontShowOnSmallViewPort }) => dontShowOnSmallViewPort && 'background: none'}
     }
 `
 export const Group = styled.div`
@@ -32,12 +32,28 @@ export const Container = styled.div`
 `;
 
 export const Picture = styled.button`
-  background: url(${({src}) => src});
+  background: url(${({ src }) => src});
   background-size: contain;
   border: 0;
   width: 32px;
   height: 32px;
   cursor: pointer;
+`
+
+export const TextLink = styled.p`
+  color: white;
+  text-decoration: none;
+  margin-right: 30px;
+  font-weight: ${({ active }) => (active === 'true' ? '700' : 'normal')};
+  cursor: pointer;
+
+  &:hover {
+    font-weight: bold;
+  }
+
+  &:last-of-type {
+    margin-right: 0;
+  }
 `
 
 export const Dropdown = styled.div`
@@ -48,6 +64,29 @@ export const Dropdown = styled.div`
   width: 100px;
   top: 32px;
   right: 10px;
+
+  ${Group}:last-of-type ${TextLink} {
+    cursor: pointer;
+  }
+
+  ${Group} {
+    margin-bottom: 10px;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+    ${TextLink}, ${Picture} {
+      cursor: default;
+    }
+  }
+
+  button {
+    margin-right: 10px;
+  }
+
+  p {
+    font-size: 12px;
+  }
 `;
 
 export const Profile = styled.div`
@@ -113,22 +152,6 @@ export const Text = styled.p`
   line-height: normal;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.45);
   margin: 0;
-`
-
-export const TextLink = styled.p`
-  color: white;
-  text-decoration: none;
-  margin-right: 30px;
-  font-weight: ${({active}) => (active === 'true' ? '700': 'normal')};
-  cursor: pointer;
-
-  &:hover {
-    font-weight: bold;
-  }
-
-  &:last-of-type {
-    margin-right: 0;
-  }
 `
 
 export const FeatureCallOut = styled.h2`

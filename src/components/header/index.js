@@ -16,6 +16,7 @@ import {
     FeatureCallOut,
     Search,
     SearchIcon,
+    PlayButton,
     SearchInput,
 } from './styles/header'
 import { useState } from 'react';
@@ -67,6 +68,10 @@ Header.Dropdown = function HeaderDropdown({ children, ...restProps }) {
 
 Header.TextLink = function HeaderTextLink({ children, ...restProps }) {
     return <TextLink {...restProps}>{children}</TextLink>;
+}
+
+Header.PlayButton = function HeaderPlayButton({ children, ...restProps }) {
+    return <PlayButton {...restProps}>{children}</PlayButton>;
 }
 
 Header.Frame = function HeaderFrame({ children, ...restProps }) {

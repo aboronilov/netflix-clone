@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { SelectProfileContainer } from './profiles';
 import { FirebaseContext } from '../context/firebase';
 import useAuthListener from '../hooks/use-auth-listener';
+import Fuse from 'fuse.js';
 import { Header, Loading, Card, Player} from '../components';
 import * as ROUTES from '../constants/routes';
 import logo from '../logo.svg';
@@ -26,6 +27,18 @@ export default function BrowseContainer({ slides }) {
         seSlideRows(slides[category]);
     }, [slides, category])
 
+    useEffect(()=> {
+        const fuse = new Fuse(slideRows, {
+            keys: ['data.description', 'data.title', 'data.genre']
+        });
+        const results = fuse.search(searchTerm).map(({item}) => item);
+
+        if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
+            seSlideRows(results);
+        } else {
+            seSlideRows(slides[category]);
+        }
+    }, [searchTerm])
 
     return profile.displayName ? (
         <>

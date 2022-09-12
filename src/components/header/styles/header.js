@@ -34,6 +34,7 @@ export const Container = styled.div`
 export const Picture = styled.button`
   background: url(${({ src }) => src});
   background-size: contain;
+  /* object-fit: cover; */
   border: 0;
   width: 32px;
   height: 32px;
@@ -49,6 +50,14 @@ export const TextLink = styled.p`
 
   &:hover {
     font-weight: bold;
+  }
+
+  &:first-of-type {
+    margin-left: 100px;
+
+    @media (max-width: 1200px) {
+      margin-left: 0;
+    }
   }
 
   &:last-of-type {
@@ -125,6 +134,7 @@ export const PlayButton = styled.button`
   font-size: 20px;
   margin-top: 30px;
   cursor: pointer;
+  transition: transform 0.2s;
 
   &:hover {
     background-color: #ff1e1e;

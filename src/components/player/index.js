@@ -25,10 +25,15 @@ Player.Video = function PlayerVideo({ src, ...restProps }) {
     return showPlayer ? createPortal(
         <Overlay onClick={() => setShowPlayer(false)} {...restProps}>
             <Inner>
-                <video id="netflix-player" controls autoPlay>
+                {/* <video id="netflix-player" controls autoPlay>
                     <source src={src} type="video/mp4" />
-                </video>
+                </video> */}
                 {/* <Close /> */}
+                <div class="responsiveRapper">
+                    <iframe width="560" height="315"
+                        src="https://www.youtube.com/embed/zAlX1V3lK5s">
+                    </iframe>
+                </div>
             </Inner>
         </Overlay>,
         document.body

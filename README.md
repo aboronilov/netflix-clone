@@ -1,4 +1,4 @@
-# Photographer portfolio website
+# Responsive Netflix clone
 The deployed site is [here](https://netflix-clone-eight-roan.vercel.app/)
 
 ## Technologies

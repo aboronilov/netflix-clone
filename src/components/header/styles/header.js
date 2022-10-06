@@ -69,7 +69,8 @@ export const Dropdown = styled.div`
   display: none;
   background-color: black;
   position: absolute;
-  width: 100px;
+  padding: 10px;
+  width: 150px;
   top: 32px;
   right: 10px;
 

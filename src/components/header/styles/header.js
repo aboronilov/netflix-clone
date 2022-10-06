@@ -53,7 +53,7 @@ export const TextLink = styled.p`
   }
 
   &:first-of-type {
-    margin-left: 100px;
+    margin-left: 20px;
 
     @media (max-width: 1200px) {
       margin-left: 0;
@@ -70,7 +70,7 @@ export const Dropdown = styled.div`
   background-color: black;
   position: absolute;
   padding: 10px;
-  width: 150px;
+  width: 100px;
   top: 32px;
   right: 10px;
 
